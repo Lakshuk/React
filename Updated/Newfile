@@ -1,0 +1,95 @@
+package com.example.service;
+
+import com.example.entity.User;
+import com.example.repository.UserRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.Random;
+
+@Service
+@Transactional
+public class ForgotPasswordService {
+    private final UserRepository userRepository;
+    private final EmailService emailService;
+
+    public ForgotPasswordService(UserRepository userRepository, EmailService emailService) {
+        this.userRepository = userRepository;
+        this.emailService = emailService;
+    }
+
+    public String generateOTP() {
+        Random random = new Random();
+        return String.format("%06d", random.nextInt(999999));
+    }
+
+    public String sendOTP(String email) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user == null) {
+            return "User not found!";
+        }
+
+        String otp = generateOTP();
+        user.setOtp(otp);
+        userRepository.save(user);
+
+        emailService.sendEmail(email, "Forgot Password OTP", "Your OTP is: " + otp);
+        return "OTP sent to email!";
+    }
+
+    public String verifyOTP(String email, String otp) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user == null || !user.getOtp().equals(otp)) {
+            return "Invalid OTP!";
+        }
+        return "OTP verified!";
+    }
+
+    public String resetPassword(String email, String otp, String newPassword) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user == null || !user.getOtp().equals(otp)) {
+            return "Invalid OTP!";
+        }
+
+        user.setPassword(newPassword);
+        user.setOtp(null);  // Clear OTP after successful reset
+        userRepository.save(user);
+
+        return "Password reset successfully!";
+    }
+}
+
+
+
+package com.example.controller;
+
+import com.example.service.ForgotPasswordService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/forgot-password")
+public class ForgotPasswordController {
+    private final ForgotPasswordService forgotPasswordService;
+
+    public ForgotPasswordController(ForgotPasswordService forgotPasswordService) {
+        this.forgotPasswordService = forgotPasswordService;
+    }
+
+    @PostMapping("/send-otp/{email}")
+    public ResponseEntity<String> sendOTP(@PathVariable String email) {
+        return ResponseEntity.ok(forgotPasswordService.sendOTP(email));
+    }
+
+    @PostMapping("/verify-otp/{email}/{otp}")
+    public ResponseEntity<String> verifyOTP(@PathVariable String email, @PathVariable String otp) {
+        return ResponseEntity.ok(forgotPasswordService.verifyOTP(email, otp));
+    }
+
+    @PostMapping("/reset-password/{email}/{otp}/{newPassword}")
+    public ResponseEntity<String> resetPassword(
+            @PathVariable String email,
+            @PathVariable String otp,
+            @PathVariable String newPassword) {
+        return ResponseEntity.ok(forgotPasswordService.resetPassword(email, otp, newPassword));
+    }
+}
