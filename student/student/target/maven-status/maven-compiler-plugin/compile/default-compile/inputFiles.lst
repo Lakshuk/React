@@ -1,0 +1,17 @@
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\config\AppConfig.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\config\SecurityConfig.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\controller\StudentController.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\dto\MailBody.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\dto\StudentDto.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\model\ForgotPassword.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\model\Login.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\model\Register.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\model\Student.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\repository\ForgotPasswordRepository.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\repository\LoginRepo.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\repository\RegisterRepo.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\repository\StudentRepo.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\service\EmailService.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\service\StudentService.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\StudentApplication.java
+C:\Users\DELL\Downloads\student\student\src\main\java\com\example\student\utils\ChangePassword.java
