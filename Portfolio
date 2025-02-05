@@ -1,0 +1,122 @@
+npm install react-router-dom framer-motion styled-components react-icons
+
+
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Navbar = () => (
+  <Nav>
+    <h1>My Portfolio</h1>
+    <Menu>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      <Link to="/projects">Projects</Link>
+      <Link to="/contact">Contact</Link>
+    </Menu>
+  </Nav>
+);
+
+const Nav = styled.nav`
+  display: flex; justify-content: space-between; padding: 1rem;
+  background: #222; color: white;
+`;
+const Menu = styled.div`
+  a { margin: 0 1rem; color: white; text-decoration: none; }
+`;
+
+export default Navbar;
+
+
+
+import styled from "styled-components";
+import { motion } from "framer-motion";
+
+const Home = () => (
+  <Container>
+    <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      Hi, I'm a Web Developer 👋
+    </motion.h1>
+    <p>I create beautiful and functional websites.</p>
+  </Container>
+);
+
+const Container = styled.div`
+  text-align: center; padding: 5rem;
+`;
+
+export default Home;
+
+
+
+
+
+
+import styled from "styled-components";
+
+const Projects = () => (
+  <Container>
+    <h1>My Projects</h1>
+    <ProjectCard>
+      <h2>Project 1</h2>
+      <p>A cool project description.</p>
+    </ProjectCard>
+  </Container>
+);
+
+const Container = styled.div`
+  padding: 3rem;
+`;
+
+const ProjectCard = styled.div`
+  border: 1px solid #ccc; padding: 2rem; margin-top: 1rem;
+`;
+
+export default Projects;
+
+
+
+
+
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
+
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+
+
+
+
+
+import styled from "styled-components";
+
+const Footer = () => (
+  <FooterContainer>
+    <p>© 2024 My Portfolio. All Rights Reserved.</p>
+  </FooterContainer>
+);
+
+const FooterContainer = styled.footer`
+  text-align: center; padding: 1rem; background: #222; color: white;
+`;
+
+export default Footer;
+
+
+
+
+
+
