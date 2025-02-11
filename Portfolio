@@ -76,6 +76,52 @@ export default Projects;
 
 
 
+------
+/* Navbar container */
+.navbar {
+  background-color: #4a90e2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #fdd835;
+}
+
+
+
+
+
+
+
+
 
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
